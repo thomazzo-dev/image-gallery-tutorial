@@ -5,7 +5,7 @@ import SearchForm from './search-form'
 
 export default function Header() {
     return (
-        <div className="w-full flex flex-col justify-start items-start sticky top-0 z-(999) ">
+        <div className="w-full flex flex-col justify-start items-start sticky top-0 z-[999] ">
             <header className="w-full h-14 px-6 py-1 bg-white  justify-between items-center inline-flex  ">
                 <Link href="/" >
                     <svg

@@ -1,10 +1,12 @@
 @import "tailwindcss";
 @plugin "daisyui" {
-  themes:mytheme
+  themes: mytheme;
 }
+
+/* daisy ui custom theme*/
 @plugin "daisyui/theme" {
   name: "mytheme";
-   color-scheme: light; /* color of browser-provided UI */
+  color-scheme: light; /* color of browser-provided UI */
   --color-primary: #4f46e5;
   --color-primary-content: #ffffff;
 
@@ -51,7 +53,13 @@
   --noise: 0; /* binary: 0 or 1 */
 }
 
- 
+/*break points*/
+@theme {
+  --breakpoint-sm: 600px;
+  --breakpoint-md: 900px;
+  --breakpoint-lg: 1200px;
+  --breakpoint-lg: 1440px;
+}
 
 @theme inline {
   --color-background: var(--background);
@@ -138,35 +146,24 @@ body {
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
   }
 
-  .masonry-layout {
+  .my-masonry-grid {
+    display: -webkit-box; /* Not needed if autoprefixing */
+    display: -ms-flexbox; /* Not needed if autoprefixing */
+    display: flex;
     width: 100%;
     max-width: 70.5rem;
     padding-left: 1rem;
     padding-right: 1rem;
-    column-count: 1;
-    column-gap: 2rem;
+  }
+  .my-masonry-grid_column {
+    padding-left: 30px; /* gutter size */
+    background-clip: padding-box;
   }
 
-  @media (min-width: 640px) {
-    .masonry-layout {
-      column-count: 2;
-    }
-  }
-
-  @media (min-width: 768px) {
-    .masonry-layout {
-      column-count: 3;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .masonry-layout {
-      column-count: 4;
-    }
-  }
-
-  .masonry-layout > * {
-    margin-bottom: 2rem;
+  /* Style your items */
+  .my-masonry-grid_column > div {
+    /* change div to reference your elements you put in <Masonry> */
+    margin-bottom: 30px;
   }
 
   .masonry-item {
@@ -175,7 +172,7 @@ body {
     break-inside: avoid;
     overflow: hidden;
     border-radius: 0.75rem;
-    background-color: #cbd5e1;
+    background-color: --var(--color-base-200);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: filter 0.3s ease-in-out;
   }
