@@ -51,21 +51,21 @@ const Tab = ({ tabName, isLagerThanMd, isMached, icon }: {
 export default function SearchSegment({ keyword }: { keyword: string }) {
     const isLagerThanMd = useMediaQuery('(min-width: 900px)')
     const segment = useSelectedLayoutSegment()
-
-    const matchPhotoTab = segment === "/"
+    console.log("segment", segment)
+    const matchPhotoTab = segment === null
     const matchCollectionTab = segment === "collection"
     const matchUserTab = segment === "user"
     return (    
         <>
             <header className="sticky top-14 z-[30] flex h-12 w-full  items-center justify-between bg-white px-2 shadow-sm">
                 <section className="flex h-full w-1/4  max-w-[360px] items-center  gap-3 font-semibold *:text-sm	   *:text-slate-500 *:md:text-base">
-                    <Link href={`/s/photo/${keyword}`} onClick={() => scrollToTop()}>
+                    <Link href={`/s/${keyword}`} onClick={() => scrollToTop()}>
                         <Tab tabName={"photo"} isMached={matchPhotoTab} isLagerThanMd={isLagerThanMd} icon={<CameraIcon/>}/>
                     </Link>
-                    <Link href={`/s/collection/${keyword}`} onClick={() => scrollToTop()}>
+                    <Link href={`/s/${keyword}/collection`} onClick={() => scrollToTop()}>
                          <Tab tabName={"collection"} isMached={matchCollectionTab} isLagerThanMd={isLagerThanMd} icon={<PhotoIcon/>}/>
                     </Link>
-                    <Link href={`/s/user/${keyword}`} onClick={() => scrollToTop()}>
+                    <Link href={`/s/${keyword}/user`} onClick={() => scrollToTop()}>
                         <Tab tabName={"user"} isMached={matchUserTab} isLagerThanMd={isLagerThanMd} icon={<UsersIcon/>}/>
                     </Link>
                 </section>

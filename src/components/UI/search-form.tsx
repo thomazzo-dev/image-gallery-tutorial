@@ -25,7 +25,7 @@ export default function SearchForm() {
     e.preventDefault();
     setIsOpened(!isOpened);
     scrollToTop();
-    redirect(`/s/photo/${keyword}`, RedirectType.push);
+    redirect(`/s/${keyword}`, RedirectType.push);
   };
   
    useOnClickOutside<HTMLDivElement>(formRef, () => setIsOpened(false))

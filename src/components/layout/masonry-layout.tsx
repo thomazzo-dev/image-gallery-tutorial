@@ -1,3 +1,4 @@
+"use client";
 import MasonryContainer from "../UI/masonry-container"
 import { getAspectRatio } from "@/utils/util-functions";
 import ImageCard from "../UI/image-card"

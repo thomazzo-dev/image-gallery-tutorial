@@ -12,7 +12,7 @@ interface SeachPageProps {
 export default async function SearchLayout({ children, params }:SeachPageProps) {
     const { keyword } = await params;
     return (
-        <div className='column-layout'>
+        < >
             <SearchSegment keyword={`${keyword}`}/>
             <div className="mb-32 flex w-full flex-col items-center justify-start">
                 <header className="flex h-20 w-full max-w-[70.5rem] items-center justify-start px-4">
@@ -22,6 +22,6 @@ export default async function SearchLayout({ children, params }:SeachPageProps) 
                 </header>
                 {children}
             </div>
-        </div>
+        </ >
     )
 }
