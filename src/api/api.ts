@@ -10,8 +10,7 @@ async function unsplashApi({
   const API_KEY = process.env.API_ACCESS_KEY;
 
   const res = await fetch(
-    `${BASE_URL}/${url}?client_id=${API_KEY}&${options}`,
-    {}
+    `${BASE_URL}/${url}?client_id=${API_KEY}&${options}`
   );
 
   if (!res.ok) {

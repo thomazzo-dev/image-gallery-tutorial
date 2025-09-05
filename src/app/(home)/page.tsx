@@ -1,10 +1,11 @@
+"use server"
 import MasonryLayout from '@/components/layout/masonry-layout'
 import React from 'react'
 import imageUrl from "../../../public/assets/masonry image.png"
 import unsplashApi from '@/api/api'
 
 const getPhotos = unsplashApi({
-    url: 'photos',options:`per_page=20`
+    url: 'photos',options:`per_page=30`
 })
 
 export default async function Homepage() {

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, {  useEffect, useRef,useState } from "react";
 import { Blurhash } from "react-blurhash";
 
 type ImageCardProps = {
@@ -9,19 +9,51 @@ type ImageCardProps = {
   skeleton?: boolean;
 };
 
+ 
+
+
 const ImageCard: React.FC<ImageCardProps> = ({
   blurHash,
   imageUrl,
   skeleton,
 }) => {
   const [isImageLoading, setIsImageLoading] = useState<boolean>(true);
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    // 1. 컴포넌트가 마운트된 후에 이 코드가 실행됩니다.
+    // 2. imgRef.current를 통해 실제 DOM 요소에 접근합니다.
+    const currentImg = imgRef.current;
+
+    // 3. 이미지가 이미 로드되었는지 확인합니다.
+    // complete 속성은 브라우저가 이미지를 완전히 다운로드했는지 여부를 알려줍니다.
+    if (currentImg && currentImg.complete) {
+      setIsImageLoading(false);
+      console.log('Image from cache, so immediately loaded.');
+    } else if (currentImg) {
+      // 4. 이미 로드되지 않았다면, 'onload' 이벤트 리스너를 추가합니다.
+      // 이 리스너는 이미지가 로딩을 완료했을 때 실행됩니다.
+      currentImg.onload = () => {
+        setIsImageLoading(false);
+        console.log('Image finished loading from network.');
+      };
+    }
+
+    // 5. 클린업(cleanup) 함수: 컴포넌트가 언마운트될 때 이벤트 리스너를 제거합니다.
+    return () => {
+      if (currentImg) {
+        currentImg.onload = null;
+      }
+    };
+  }, [imageUrl]); // imageUrl이 변경될 때마다 useEffect를 다시 실행합니다.
+
 
   return (
     <>
       {imageUrl ? (
         <img
           src={imageUrl}
-          onLoad={() => setIsImageLoading(false)}
+          ref={imgRef}
           alt="image"
           style={{
             width: `${isImageLoading ? 0 : "100%"}`,
